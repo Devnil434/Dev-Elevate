@@ -1,168 +1,52 @@
-import { AuthProvider } from "./contexts/AuthContext";
-import { GlobalProvider, useGlobalState } from "./contexts/GlobalContext";
-import { NotificationProvider } from "./contexts/NotificationContext";
-import { AdminProvider } from "./contexts/AdminContext";
-import { AppProvider } from "./contexts/AppContext";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import Footer from "./components/Layout/Footer";
-import ScrollToTop from "./components/Layout/ScrollToTop";
-import LearningHub from "./components/LearningHub/LearningHub";
-import Chatbot from "./components/Chatbot/Chatbot";
-import TechFeed from "./components/TechFeed/TechFeed";
-import ResumeBuilder from "./components/ResumeBuilder/ResumeBuilder";
-import PlacementPrep from "./components/PlacementPrep/PlacementPrep";
-import PlacementStats from "./pages/Placements/PlacementStats";
-import UserProfile from "./components/Profile/UserProfile";
-import PrivacyPolicy from "./components/Legal/PrivacyPolicy";
-import TermsOfService from "./components/Legal/TermsOfService";
-import CreatorPage from "./components/Legal/CreatorPage";
-import Disclaimer from "./components/Legal/Disclaimer";
-import AdminDashboard from "./components/Admin/AdminDashboard";
-import AdminSystemLogs from "./components/Admin/AdminSystemLogs";
-import ProtectedRoute from "./components/Auth/ProtectedRoute";
-import LoginRegister from "./components/Auth/LoginRegister";
-import Dashboard from "./components/Dashboard/Dashboard";
-import Settings from "./components/Settings/Settings";
-import PremiumPage from "./components/premium/PremiumPage";
-import PaymentPage from "./components/Payment/PaymentPage";
-import ProjectRecommender from "./components/ProjectRecommender/ProjectRecommender";
-import Layout from "./components/Layout/Layout";
-import CommunityForum from "./components/Community/CommunityForum";
-import LandingPage from "./pages/Landing/LandingPage";
-import TasksView from "./components/tasks/TasksView";
-import NotesView from "./components/notes/NotesView";
-import CalendarView from "./components/calendar/CalendarView";
-import Coding from "./pages/Coding/Coding";
-import InterviewPage from "./pages/Interview/InterviewPage";
-import QuizPage from "./components/Quiz/QuizPage";
-import HackathonsPage from "./pages/Hackathons/HackathonsPage";
-import HackathonDetailPage from "./pages/Hackathons/HackathonDetailPage";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-
-
-const AppContent = () => {
-  const { state } = useGlobalState();
-  
+const SimpleLandingPage = () => {
   return (
-    <Router>
-      <ScrollToTop />
-      <Routes>
-                {/* Public Routes */}
-                <Route
-                  path="/login"
-                  element={
-                    <ProtectedRoute requireAuth={false}>
-                      <LoginRegister />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/placements" element={<PlacementStats />}/>
-
-                {/* Protected Routes */}
-                <Route
-                  path="/*"
-                  element={
-                    <ProtectedRoute>
-                      <AppProvider>
-                        <Layout>
-                          <div className={`flex-1 ${state.darkMode ? 'bg-gray-900' : 'bg-white'}`}>
-                            <main className="flex-1">
-                              <Routes>
-                                <Route path="dashboard" element={<Dashboard />} />
-                                <Route path="learning" element={<LearningHub />} />
-                                <Route path="quiz" element={<QuizPage />} />
-                                <Route path="coding/*" element={<Coding />} />
-                                <Route path="interview" element={<InterviewPage />} />
-                                <Route path="chatbot" element={<Chatbot />} />
-                                <Route path="news" element={<TechFeed />} />
-                                <Route
-                                  path="community/*"
-                                  element={<CommunityForum />}
-                                />
-
-                                <Route path="resume" element={<ResumeBuilder />} />
-                                <Route
-                                  path="placement"
-                                  element={<PlacementPrep />}
-                                />
-                                <Route
-                                  path="projects"
-                                  element={<ProjectRecommender />}
-                                />
-                                <Route path="tasks" element={<TasksView />} />
-                                <Route path="notes" element={<NotesView />} />
-                                <Route path="calendar" element={<CalendarView />} />
-                                <Route path="hackathons" element={<HackathonsPage />} />
-                                <Route path="hackathons/:id" element={<HackathonDetailPage />} />
-                                <Route path="settings" element={<Settings />} />
-                                <Route path="premium" element={<PremiumPage />} />
-                                <Route path="payment" element={<PaymentPage />} />
-                                <Route path="profile" element={<UserProfile />} />
-                                <Route
-                                  path="privacy"
-                                  element={<PrivacyPolicy />}
-                                />
-                                <Route path="terms" element={<TermsOfService />} />
-                                <Route path="creator" element={<CreatorPage />} />
-                                <Route
-                                  path="disclaimer"
-                                  element={<Disclaimer />}
-                                />
-                                <Route
-                                  path="*"
-                                  element={<Navigate to="/dashboard" replace />}
-                                />
-                              </Routes>
-                            </main>
-                            <Footer /> 
-                          </div>
-                        </Layout>
-                      </AppProvider>
-                    </ProtectedRoute>
-                  }
-                />
-
-                {/* Admin Routes */}
-                <Route
-                  path="/admin"
-                  element={
-                    <ProtectedRoute requireAdmin={true}>
-                      <AdminProvider>
-                        <AdminDashboard />
-                      </AdminProvider>
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/admin/logs"
-                  element={
-                    <ProtectedRoute requireAdmin={true}>
-                      <AdminProvider>
-                        <AdminSystemLogs />
-                      </AdminProvider>
-                    </ProtectedRoute>
-                  }
-                />
-      </Routes>
-    </Router>
+    <div className="min-h-screen bg-black text-white">
+      <div className="container mx-auto px-4 py-16">
+        <header className="text-center mb-12">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-4">
+            DevElevate
+          </h1>
+          <p className="text-xl text-gray-300">
+            AI-Powered Education & Career Platform
+          </p>
+        </header>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="bg-gradient-to-r from-purple-500/20 to-blue-500/20 p-6 rounded-lg border border-purple-500/30">
+            <h3 className="text-2xl font-bold mb-4 text-purple-400">Learn</h3>
+            <p className="text-gray-300">Master DSA, MERN, AI/ML with personalized learning paths</p>
+          </div>
+          <div className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 p-6 rounded-lg border border-blue-500/30">
+            <h3 className="text-2xl font-bold mb-4 text-blue-400">Practice</h3>
+            <p className="text-gray-300">Code challenges, mock interviews, and real projects</p>
+          </div>
+          <div className="bg-gradient-to-r from-cyan-500/20 to-green-500/20 p-6 rounded-lg border border-cyan-500/30">
+            <h3 className="text-2xl font-bold mb-4 text-cyan-400">Succeed</h3>
+            <p className="text-gray-300">Get placed in top companies with our guidance</p>
+          </div>
+        </div>
+        
+        <div className="text-center">
+          <button className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:shadow-lg transition-all duration-300">
+            Start Your Journey
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 
 function App() {
   return (
-    <AuthProvider>
-      <GlobalProvider>
-        <NotificationProvider>
-          <AppContent />
-        </NotificationProvider>
-      </GlobalProvider>
-    </AuthProvider>
+    <Router>
+      <Routes>
+        <Route path="/" element={<SimpleLandingPage />} />
+        <Route path="*" element={<SimpleLandingPage />} />
+      </Routes>
+    </Router>
   );
 }
 
